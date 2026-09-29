@@ -66,7 +66,7 @@ function PlanPage() {
     pace: "balanced",
     requirements: "",
   });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<"destination"|"dates"|"budget"|"interests", string>>>({});
   const [busy, setBusy] = useState(false);
   const [step, setStep] = useState(0);
 
@@ -80,7 +80,7 @@ function PlanPage() {
   const set = <K extends keyof TripInput>(k: K, v: TripInput[K]) => setForm((f) => ({ ...f, [k]: v }));
 
   const validate = () => {
-    const e: Record<string, string> = {};
+    const e: Partial<Record<"destination"|"dates"|"budget"|"interests", string>> = {};
     if (form.destination.trim().length < 2) e.destination = "Where are you headed?";
     if (!form.startDate || form.startDate < today()) e.dates = "Start date can't be in the past.";
     else if (form.endDate < form.startDate) e.dates = "End date must be on or after the start date.";
