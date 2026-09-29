@@ -1,3 +1,4 @@
+/// <reference types="google.maps" />
 import { useEffect, useRef, useState } from "react";
 import { DAY_COLORS, type Itinerary } from "@/lib/trip-types";
 
