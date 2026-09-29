@@ -14,13 +14,103 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      trip_versions: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          itinerary: Json
+          prompt: string | null
+          trip_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          itinerary: Json
+          prompt?: string | null
+          trip_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          itinerary?: Json
+          prompt?: string | null
+          trip_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trip_versions_trip_id_fkey"
+            columns: ["trip_id"]
+            isOneToOne: false
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      trips: {
+        Row: {
+          created_at: string
+          destination: string
+          end_date: string
+          id: string
+          input: Json
+          itinerary: Json
+          share_token: string | null
+          start_date: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          destination: string
+          end_date: string
+          id?: string
+          input: Json
+          itinerary: Json
+          share_token?: string | null
+          start_date: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          destination?: string
+          end_date?: string
+          id?: string
+          input?: Json
+          itinerary?: Json
+          share_token?: string | null
+          start_date?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_shared_trip: {
+        Args: { _token: string }
+        Returns: {
+          destination: string
+          end_date: string
+          id: string
+          input: Json
+          itinerary: Json
+          start_date: string
+          title: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
